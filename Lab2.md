@@ -105,7 +105,7 @@ void terminateSender();
 
 `receiver`需要计算CRC32的`checksum`，对于`checksum`不对的报文应当直接丢弃
 
-对于每一个被确认接收的`START`报文或`END`报文，你需要发送一个`ACK`报文，该报文的`seq_num`已在`RTP_Specification.md`中描述
+对于每一个被确认接收的`START`报文或`END`报文，你需要发送一个`ACK`报文，该报文的`seq_num`已在`RTP技术规范`中描述
 
 对于每一个被确认接收的`DATA`报文，你需要发送一个`ACK`报文，该报文的`seq_num`为当前期望收到的下一个`DATA`报文的`seq_num`
 
@@ -115,7 +115,7 @@ void terminateSender();
 
 2. 如果当前报文`seq_num等于N`: 发送一个`seq_num=M`的`ACK`，这里`M`为`seq_num`最小的还没有被缓存的报文，并将`M`前所有缓存的报文按序写入文件（包括最新收到的报文）
 
-对于那些`seq_num > N + window_size`的报文会被直接丢弃，以保证`receiver`窗口大小不超过`window_size`
+对于那些`seq_num >= N + window_size`的报文会被直接丢弃，以保证`receiver`窗口大小不超过`window_size`
 
 ## 实验要求
 
