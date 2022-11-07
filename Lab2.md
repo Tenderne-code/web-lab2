@@ -243,6 +243,8 @@ Deadline后新增10个测试点，包含更大窗口，更大数据，以及更�
 
 <div STYLE="page-break-after: always;"></div>
 
+需要修改测试文件，去https://github.com/N2Sys-EDU/Lab2-RTP-Test 仓库下载所有以test为前缀的可执行文件
+
 # 特殊情况处理
 
 在实际完成该协议的过程中，因为不是完整的可靠面向连接协议，还有很多BUG，为此补充了一些特殊情况下的处理
