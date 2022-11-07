@@ -20,7 +20,7 @@ typedef struct RTP_Header {
 
 **seq_num**: 序列号，用于识别顺序做按序送达
 
-**checksum**: 为RTP头以及RTP报文数据段基于32-bit CRC计算出的值
+**checksum**: 为RTP头以及RTP报文数据段基于32-bit CRC计算出的值，注意，计算checksum时checksum字段应被初始化为0
 
 
 ## 连接状态
@@ -230,14 +230,14 @@ Deadline后新增10个测试点，包含更大窗口，更大数据，以及更�
 提供的源代码主要包含以下部分：
 
 1) `third_party`文件夹为googletest源代码，不需要修改
-2) `CMakeLists.txt`为一个可用的CMake模板，实现`sender_def.c`, `receiver_def.c`, `rtp.c（我用于定义一些所需函数的代码）`后执行`cmake .`以及`make`即可编译全部代码。`rtp.c`不是必须的，所以我们的CMake文件中提供了空白的`rtp_more_file_1.c`和`rtp_more_file_2.c`以供使用。你可以根据实际情况选择性使用这些文件，不需要的文件请创建为空文件。你也可以修改`CMakeList.txt`以满足自己特定的需求。
+2) `CMakeLists.txt`为一个可用的CMake模板，实现`sender_def.c`, `receiver_def.c`, `rtp.c（我用于定义一些所需函数的代码）`后执行`cmake .`以及`make`即可编译全部代码。`rtp.c`不是必须的，你可以根据实际情况选择性使用这些文件，你也可以修改`CMakeList.txt`以满足自己特定的需求。
 3) `src`文件夹下为各函数定义的头文件，以及RTP的包头格式。
 
 ## 测试
 
 编译全部代码后执行`make test CTEST_OUTPUT_ON_FAILURE=TRUE GTEST_COLOR=TRUE`即可进行本地测试，每个测试点分数相同。
 
-若想测试单独的测试点，可调用./rtp_test_all --gtest_filter=`测试点名`，例如./rtp_test_all --gtest_filter=RTP.OPT_RECEIVER_TEST_LOST_DATA
+若想测试单独的测试点，可调用./rtp_test_all --gtest_filter=`测试点名`，例如`./rtp_test_all --gtest_filter=RTP.OPT_RECEIVER_TEST_LOST_DATA`
 
 关于每个测试点具体调用的测试文件，请参见test.cpp源码
 
